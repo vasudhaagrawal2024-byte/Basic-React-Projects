@@ -1,0 +1,188 @@
+/* ---------- RESET ---------- */
+* {
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #0a0f1f;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #eaeaf0;
+}
+
+/* ---------- MOVING BLUE BACKGROUND ---------- */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(59, 130, 246, 0.25),
+    transparent 70%
+  );
+  filter: blur(90px);
+  animation: floatBg 20s linear infinite;
+  z-index: -1;
+}
+
+body::after {
+  animation-delay: -10s;
+  background: radial-gradient(
+    circle,
+    rgba(96, 165, 250, 0.18),
+    transparent 70%
+  );
+}
+
+@keyframes floatBg {
+  0% {
+    transform: translate(-60%, -40%);
+  }
+  50% {
+    transform: translate(-30%, -10%);
+  }
+  100% {
+    transform: translate(-60%, -40%);
+  }
+}
+
+/* ---------- APP CARD ---------- */
+#root {
+  position: relative;
+  background: rgba(22, 26, 34, 0.88);
+  padding: 28px 30px;
+  border-radius: 16px;
+  width: 360px;
+  backdrop-filter: blur(14px);
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  animation: fadeIn 0.8s ease;
+}
+
+/* Glitter overlay */
+#root::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.06) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+  opacity: 0.15;
+  pointer-events: none;
+  border-radius: 16px;
+}
+
+/* ---------- FADE IN ---------- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- HEADING ---------- */
+h1 {
+  margin: 0 0 22px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+/* ---------- PASSWORD ROW ---------- */
+h1 + div {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+/* ---------- PASSWORD INPUT ---------- */
+input[type="text"] {
+  flex: 1;
+  padding: 10px 12px;
+  background: rgba(10, 15, 31, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: #eaeaf0;
+  font-size: 14px;
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+}
+
+input[type="text"]:focus {
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+  outline: none;
+}
+
+input[type="text"]::selection {
+  background: #3b82f6;
+  color: white;
+}
+
+/* ---------- COPY BUTTON ---------- */
+button {
+  padding: 10px 14px;
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(59, 130, 246, 0.45);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* ---------- CONTROLS ---------- */
+h1 + div + div {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ---------- SLIDER ---------- */
+input[type="range"] {
+  width: 100%;
+  accent-color: #3b82f6;
+}
+
+/* ---------- LABELS ---------- */
+label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #cfd3ff;
+}
+
+/* ---------- CHECKBOX ---------- */
+input[type="checkbox"] {
+  accent-color: #3b82f6;
+}
